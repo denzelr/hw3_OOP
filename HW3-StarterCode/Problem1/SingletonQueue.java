@@ -17,8 +17,9 @@ public class SingletonQueue{
 	public void add(Submission submission){
 		q.add(submission);
 	}
-	public void process(){
-
+	public Submission process(){
+		Submission submission = q.poll();
+		return submission;
 	}
 
 }
