@@ -39,25 +39,16 @@ class Tree implements Terrain
 }
 class TreeFactory
 {
-	private static final ArrayList<Tree> mylist = new ArrayList<Tree>();
+	private static Map<String, Tree> mylist = new HashMap<String, Tree>();
 	public static Terrain getTree(String type)
 	{
-		Tree myTree;
-		boolean found = false;
-		for(Tree tree : mylist){
-			if(tree.getType() ==  type){
-				found = true;
-				myTree = tree;
-				break;
-			}
-
+		Tree tree = mylist.get(type);
+		if(tree == null){
+			tree = new Tree(type);
+			mylist.put(type, tree);
 		}
-		if(!found){
-			myTree = new Tree(type);
-			mylist.add(myTree);
-		}
-		return myTree;
-   }
+		return tree;
+   	}
 }
 /**
  * Don’t change anything in TreeDemo
@@ -79,13 +70,11 @@ class TreeDemo extends JPanel
 	}
 	public static void main(String[] args) 
 	{
-		System.out.println("hi");
 		JFrame frame = new JFrame();
 		frame.add(new TreeDemo());
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		System.out.println("hi");
 	}
 	private static String getRandomType() 
 	{
