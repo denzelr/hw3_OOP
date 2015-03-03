@@ -1,5 +1,3 @@
-public class Observer {
-	public update(){
-		
-	}
+public interface Observer {
+	public void update(boolean reportSucceeds, boolean timeout);
 }

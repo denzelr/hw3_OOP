@@ -25,5 +25,4 @@ public class SingletonQueue{
 		Submission submission = q.poll();
 		return submission;
 	}
-
 }

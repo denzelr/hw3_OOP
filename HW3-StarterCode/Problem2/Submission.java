@@ -6,18 +6,30 @@
 
 import java.util.Random;
 
-public class Submission
+public class Submission implements Subject
 {	
+
     private Random myRandom;
 	private boolean lastErrorWasTimeout;
+	private ArrayList<Observer> observers;
 
     // You may add attributes to this class if necessary
-
+    
 	public Submission()
 	{
 	    myRandom = new Random();
 		lastErrorWasTimeout = false;
 	}
+
+	public void attach(Observer o){
+
+    }
+    public void detach(Observer o){
+
+    }
+    public void notify(){
+
+    }
 
     public void runTestCase()
 	{
