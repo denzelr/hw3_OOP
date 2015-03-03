@@ -51,14 +51,8 @@ class Analysis
 		}
 		String type = args[0];
 		Logging logfile;
-		if (type.equalsIgnoreCase("text"))
-			logfile = new LogText();
-		else if (type.equalsIgnoreCase("xml"))
-			logfile = new LogXML();
-		else if (type.equalsIgnoreCase("html"))
-			logfile = new LogHTML();
-		else
-			logfile = new LogText();
+		logfile = LogFactory.getLog(type);
+		
 		logfile.log("Starting application...");
 
 		System.out.println("... read in data file to analyze ...");
@@ -67,5 +61,19 @@ class Analysis
 		// code...
 		System.out.println("... Printing analysis results ...");
 		// code...
+	}
+}
+class LogFactory{
+	public static Logging getLog(String type){
+		Logging logfile;
+		if (type.equalsIgnoreCase("text"))
+			logfile = new LogText();
+		else if (type.equalsIgnoreCase("xml"))
+			logfile = new LogXML();
+		else if (type.equalsIgnoreCase("html"))
+			logfile = new LogHTML();
+		else
+			logfile = new LogText();
+		return logfile;
 	}
 }
