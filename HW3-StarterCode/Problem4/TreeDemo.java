@@ -10,22 +10,27 @@ interface Terrain
 }
 class Tree implements Terrain
 {
-	private int x;
-	private int y;
+	//private int x;
+	//private int y;
+	private String type;
 	private Image image;
 	public Tree(String type)
 	{
 		System.out.println("Creating a new instance of a tree of type " + type);
 		String filename = "tree" + type + ".png";
+		this.type = type;
 		try
 		{
 			image = ImageIO.read(new File(filename));
 		} catch(Exception exc) { }
 	}
-	public void setX(int x) { this.x = x; }
-	public void setY(int y) { this.y = y; }
-	public int getX() { return x; }
-	public int getY() { return y; }
+	public String getType(){
+		return this.type;
+	}
+	//public void setX(int x) { this.x = x; }
+	//public void setY(int y) { this.y = y; }
+	//public int getX() { return x; }
+	//public int getY() { return y; }
 	@Override
 	public void draw(Graphics graphics, int x, int y)
 	{
@@ -37,9 +42,21 @@ class TreeFactory
 	private static final ArrayList<Tree> mylist = new ArrayList<Tree>();
 	public static Terrain getTree(String type)
 	{
-		Tree tree = new Tree(type);
-		mylist.add(tree);
-		return tree;
+		Tree myTree;
+		boolean found = false;
+		for(Tree tree : mylist){
+			if(tree.getType() ==  type){
+				found = true;
+				myTree = tree;
+				break;
+			}
+
+		}
+		if(!found){
+			myTree = new Tree(type);
+			mylist.add(myTree);
+		}
+		return myTree;
    }
 }
 /**
@@ -62,11 +79,13 @@ class TreeDemo extends JPanel
 	}
 	public static void main(String[] args) 
 	{
+		System.out.println("hi");
 		JFrame frame = new JFrame();
 		frame.add(new TreeDemo());
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		System.out.println("hi");
 	}
 	private static String getRandomType() 
 	{
