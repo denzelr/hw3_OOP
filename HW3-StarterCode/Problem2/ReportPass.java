@@ -1,5 +1,5 @@
 public class ReportPass implements Observer{
-	boolean testPass;
+	private boolean testPass;
 	public void update(boolean reportSucceeds, boolean timeout){
 		this.testPass = reportSucceeds;
 		// if test status is true, return the report
